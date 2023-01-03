@@ -11,5 +11,4 @@ chown -R "${ASTERISK_USER}": /var/log/asterisk \
                            /var/run/asterisk \
                            /var/spool/asterisk; \
 
-# exec ${COMMAND}
-sleep 500000
+exec ${COMMAND}
