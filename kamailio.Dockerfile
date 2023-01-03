@@ -11,7 +11,7 @@ ENTRYPOINT ["/docker-entrypoint-kamailio.sh"]
 # /usr/lib/kamailio/kamctl
 # /usr/sbin
 # kamailio -M 8 -E -e -dd
-# kamctl dispatcher addgw 1 172.20.0.1
+# kamctl dispatcher addgw 1 172.20.0.2
 # kamctl add test test
 # kamdbctl create
 # netsh interface portproxy

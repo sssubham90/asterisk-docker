@@ -75,9 +75,9 @@ const registerEventHandlers = {
 
 const configuration = {
   sockets: [socket],
-  uri: "sip:test@172.20.0.3",
+  uri: "sip:test@172.20.0.4",
   password: "test",
-  realm: "172.20.0.3",
+  realm: "172.20.0.4",
   display_name: "test",
   register: true,
 };

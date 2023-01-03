@@ -5,7 +5,7 @@
 ## will use their internal default values.
 ##
 ## the SIP domain
-SIP_DOMAIN=172.20.0.3
+SIP_DOMAIN=172.20.0.4
 ##
 ## chrooted directory
 # CHROOT_DIR="/path/to/chrooted/directory"
@@ -18,7 +18,7 @@ SIP_DOMAIN=172.20.0.3
 DBENGINE=MYSQL
 ##
 ## database host
-DBHOST=172.20.0.2
+DBHOST=172.20.0.3
 ##
 ## database port
 DBPORT=3306
@@ -42,7 +42,7 @@ DBROUSER="kamailioro"
 DBROPW="kamailioro"
 ##
 ## database access host (from where is kamctl used)
-DBACCESSHOST=172.20.0.3
+DBACCESSHOST=172.20.0.4
 ##
 ## database super user (for ORACLE this is 'scheme-creator' user)
 DBROOTUSER="root"

@@ -16,7 +16,7 @@ services:
       - 30000-30100
     networks:
       voip:
-        ipv4_address: 172.20.0.1
+        ipv4_address: 172.20.0.2
 
   mysql:
     image: mysql:5.7
@@ -24,7 +24,7 @@ services:
       - mysql-volume:/var/lib/mysql
     networks:
       voip:
-        ipv4_address: 172.20.0.2
+        ipv4_address: 172.20.0.3
     environment:
       MYSQL_ROOT_PASSWORD: root
 
@@ -34,11 +34,11 @@ services:
       context: .
       dockerfile: kamailio.Dockerfile
     ports: 
-      - "81:80"
-      - "444:443"
+      - "80:80"
+      - "443:443"
     networks:
       voip:
-        ipv4_address: 172.20.0.3
+        ipv4_address: 172.20.0.4
     depends_on:
       - asterisk
       - mysql
@@ -55,7 +55,7 @@ services:
       - "8080:8080"
     networks:
       voip:
-        ipv4_address: 172.20.0.4
+        ipv4_address: 172.20.0.5
     depends_on:
       - kamailio
     expose:
