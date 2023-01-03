@@ -1,5 +1,5 @@
 const audio = new window.Audio();
-const socket = new JsSIP.WebSocketInterface("ws://127.0.0.1:81");
+const socket = new JsSIP.WebSocketInterface("ws://127.0.0.1");
 
 // Register callbacks to desired call events
 const eventHandlers = {

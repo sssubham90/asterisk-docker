@@ -25,6 +25,8 @@ services:
     networks:
       voip:
         ipv4_address: 172.20.0.3
+    ports: 
+      - "3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: root
 
