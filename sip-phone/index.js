@@ -1,5 +1,6 @@
 const audio = new window.Audio();
 const socket = new JsSIP.WebSocketInterface("ws://127.0.0.1");
+// JsSIP.debug.enable("*");
 
 // Register callbacks to desired call events
 const eventHandlers = {
@@ -30,43 +31,44 @@ const options = {
   mediaConstraints: { audio: true, video: false },
 };
 
+const call = () => {
+  const session = ua.call("100", options);
+
+  Object.entries(eventHandlers).forEach(([event, handler]) =>
+    session.on(event, handler)
+  );
+
+  if (session.connection) {
+    console.log("Connection is valid");
+
+    session.connection.addEventListener("addstream", (e) => {
+      console.log("Add stream");
+      var audio = document.createElement("audio");
+      audio.srcObject = window.URL.createObjectURL(e.stream);
+      audio.play();
+    });
+  } else {
+    console.log("Connection is null");
+  }
+};
+
 const registerEventHandlers = {
   connecting: (e) => console.log("connecting", e),
   connected: (e) => console.log("connected", e),
   disconnected: (e) => console.log("disconnected", e),
   registered: (e) => {
     console.log("registered", e);
-    const session = ua.call("100", options);
-
-    Object.entries(eventHandlers).forEach(([event, handler]) =>
-      session.on(event, handler)
-    );
-
-    if (session.connection) {
-      console.log("Connection is valid");
-
-      session.connection.addEventListener("addstream", (e) => {
-        console.log("Add stream");
-        audio.srcObject = e.stream;
-        audio.play();
-      });
-
-      session.connection.addEventListener("peerconnection", (e) => {
-        console.log("Peer connection");
-        audio.srcObject = e.stream;
-        audio.play();
-      });
-    } else {
-      console.log("Connection is null");
-    }
+    call();
   },
   unregistered: (e) => console.log("unregistered", e),
   registrationFailed: (e) => console.log("registrationFailed", e),
   newRTCSession: (e) => {
     console.log("newRTCSession", e);
     const session = e.session;
-    session.on("addstream", function (e) {
-      audio.src = window.URL.createObjectURL(e.stream);
+    session.connection.addEventListener("addstream", (e) => {
+      console.log("Add stream");
+      var audio = document.createElement("audio");
+      audio.srcObject = window.URL.createObjectURL(e.stream);
       audio.play();
     });
   },
@@ -77,7 +79,6 @@ const configuration = {
   sockets: [socket],
   uri: "sip:test@172.20.0.4",
   password: "test",
-  realm: "172.20.0.4",
   display_name: "test",
   register: true,
 };

@@ -10,10 +10,10 @@ services:
       - asterisk-volume-var:/var
     ports: 
       - "5060:5060"
-      - "30000-30100:30000-30100"
+      - "30000-30100:30000-30100/udp"
     expose:
       - 5060
-      - 30000-30100
+      - 30000-30100/udp
     networks:
       voip:
         ipv4_address: 172.20.0.2
