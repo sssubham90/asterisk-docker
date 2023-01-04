@@ -12,3 +12,4 @@ chown -R "${ASTERISK_USER}": /var/log/asterisk \
                            /var/spool/asterisk; \
 
 exec ${COMMAND}
+while true; do sleep 1; done
