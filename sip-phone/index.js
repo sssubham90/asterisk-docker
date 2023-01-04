@@ -44,7 +44,7 @@ const call = () => {
     session.connection.addEventListener("addstream", (e) => {
       console.log("Add stream");
       var audio = document.createElement("audio");
-      audio.srcObject = window.URL.createObjectURL(e.stream);
+      audio.srcObject = e.stream;
       audio.play();
     });
   } else {
@@ -68,7 +68,7 @@ const registerEventHandlers = {
     session.connection.addEventListener("addstream", (e) => {
       console.log("Add stream");
       var audio = document.createElement("audio");
-      audio.srcObject = window.URL.createObjectURL(e.stream);
+      audio.srcObject = e.stream;
       audio.play();
     });
   },
