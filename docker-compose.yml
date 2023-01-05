@@ -8,15 +8,21 @@ services:
     volumes:
       - asterisk-volume-lib:/var/lib
       - asterisk-volume-var:/var
-    ports: 
-      - "5060:5060"
-      - "30000-30100:30000-30100/udp"
-    expose:
-      - 5060
-      - 30000-30100/udp
     networks:
       voip:
         ipv4_address: 172.20.0.2
+
+  asterisk-fallback:
+    image: asterisk
+    build:
+      context: .
+      dockerfile: asterisk.Dockerfile
+    volumes:
+      - asterisk-volume-lib:/var/lib
+      - asterisk-volume-var:/var
+    networks:
+      voip:
+        ipv4_address: 172.20.0.6
 
   mysql:
     image: mysql:5.7
