@@ -1,7 +1,6 @@
 FROM alpine
 LABEL maintainer="Subham Mohapatra <yoyosssubham@gmail.com>"
-RUN apk add mysql-client kamailio kamailio-mysql kamailio-presence kamailio-json kamailio-websocket kamailio-tls kamailio-extras kamailio-debugger
-RUN apk add openssl libunistring
+RUN apk add mysql-client kamailio kamailio-mysql kamailio-presence kamailio-json kamailio-websocket kamailio-tls kamailio-extras
 ADD docker-entrypoint-kamailio.sh /docker-entrypoint-kamailio.sh
 ADD kamailio-config/kamailio.cfg /etc/kamailio/kamailio.cfg
 ADD kamailio-config/kamctlrc /etc/kamailio/kamctlrc
