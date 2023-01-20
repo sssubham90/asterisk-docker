@@ -31,6 +31,8 @@ const options = {
   mediaConstraints: { audio: true, video: false },
 };
 
+let ua = null;
+
 const call = () => {
   const session = ua.call("100", options);
 
@@ -58,7 +60,6 @@ const registerEventHandlers = {
   disconnected: (e) => console.log("disconnected", e),
   registered: (e) => {
     console.log("registered", e);
-    call();
   },
   unregistered: (e) => console.log("unregistered", e),
   registrationFailed: (e) => console.log("registrationFailed", e),
@@ -75,17 +76,17 @@ const registerEventHandlers = {
   newMessage: (e) => console.log("newMessage", e),
 };
 
-const configuration = {
-  sockets: [socket],
-  uri: "sip:test@172.20.0.4",
-  password: "test",
-  display_name: "test",
-  register: true,
+const register = () => {
+  const configuration = {
+    sockets: [socket],
+    uri: `sip:${document.getElementById("username").value}@172.20.0.4`,
+    password: document.getElementById("password").value,
+    display_name: document.getElementById("username").value,
+    register: true,
+  };
+  ua = new JsSIP.UA(configuration);
+  Object.entries(registerEventHandlers).forEach(([event, handler]) =>
+    ua.on(event, handler)
+  );
+  ua.start();
 };
-
-const ua = new JsSIP.UA(configuration);
-Object.entries(registerEventHandlers).forEach(([event, handler]) =>
-  ua.on(event, handler)
-);
-
-ua.start();
