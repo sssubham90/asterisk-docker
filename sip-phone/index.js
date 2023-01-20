@@ -82,6 +82,9 @@ const register = () => {
     uri: `sip:${document.getElementById("username").value}@172.20.0.4`,
     password: document.getElementById("password").value,
     display_name: document.getElementById("username").value,
+    contact_uri: `sip:${
+      document.getElementById("username").value
+    }@127.0.0.1;transport=ws`,
     register: true,
   };
   ua = new JsSIP.UA(configuration);
