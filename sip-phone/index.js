@@ -34,7 +34,7 @@ const options = {
 let ua = null;
 
 const call = () => {
-  const session = ua.call("100", options);
+  const session = ua.call("rest", options);
 
   Object.entries(eventHandlers).forEach(([event, handler]) =>
     session.on(event, handler)
@@ -84,7 +84,7 @@ const register = () => {
     display_name: document.getElementById("username").value,
     contact_uri: `sip:${
       document.getElementById("username").value
-    }@127.0.0.1;transport=ws`,
+    }@172.20.0.1;transport=ws`,
     register: true,
   };
   ua = new JsSIP.UA(configuration);
